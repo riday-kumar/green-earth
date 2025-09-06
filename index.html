@@ -4,6 +4,105 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Green Earth</title>
+    <link rel="shortcut icon" href="./assets/about.png" type="image/x-icon" />
+    <!-- daisy ui & tailwind cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- font awesome cdn  -->
+    <script
+      src="https://kit.fontawesome.com/55cffc8ff5.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- css file -->
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/tailwind.config.css" />
   </head>
-  <body></body>
+  <body class="font-inter">
+    <!-- header -->
+    <header class="bg-[#15803d]">
+      <div class="w-11/12 mx-auto">
+        <div class="navbar">
+          <div class="navbar-start">
+            <div class="dropdown">
+              <div
+                tabindex="0"
+                role="button"
+                class="btn btn-ghost text-white lg:hidden"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
+                </svg>
+              </div>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow font-medium bg-[#15803d] text-white"
+              >
+                <li><a href="">About</a></li>
+                <li><a href="">Gallery</a></li>
+                <li><a href="">Plant a Tree</a></li>
+              </ul>
+            </div>
+            <a class="text-xl md:text-2xl font-bold text-white">Green Earth</a>
+          </div>
+          <div class="navbar-center hidden lg:flex">
+            <ul
+              class="menu menu-horizontal px-1 text-white font-medium text-[20px]"
+            >
+              <li><a href="">About</a></li>
+              <li><a href="">Gallery</a></li>
+              <li><a href="">Plant a Tree</a></li>
+            </ul>
+          </div>
+          <div class="navbar-end">
+            <a
+              class="btn rounded-full bg-yellow-300 border-none shadow-none text-green-700"
+              >Plant a Tree</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- banner -->
+      <section
+        class="bg-[#cff0dc] bg-[url('./assets/hero-leaf1.png'),url('./assets/hero-leaf2.png')] bg-no-repeat bg-[position:bottom_left,_bottom_right] bg-[length:40%,_40%] lg:bg-[length:30%,_30%]"
+      >
+        <div
+          class="min-h-96 text-center flex flex-col justify-center items-center space-y-4 max-lg:px-3"
+        >
+          <h2 class="text-5xl font-bold">Plant a Tree, Grow a Future</h2>
+          <p>
+            Join our mission to plant 1 million trees and make the Earth greener
+            for future generations.
+          </p>
+          <a
+            class="btn btn-lg rounded-full font-medium bg-yellow-300 border-none shadow-none text-green-800"
+            >Get Involved</a
+          >
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
