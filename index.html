@@ -30,7 +30,7 @@
   </head>
   <body class="font-inter">
     <!-- header -->
-    <header class="bg-[#15803d]">
+    <header class="bg-green-700">
       <div class="w-11/12 mx-auto">
         <div class="navbar">
           <div class="navbar-start">
@@ -84,13 +84,16 @@
         </div>
       </div>
     </header>
-    <main>
+    <main class="bg-[#f0fdf4]">
       <!-- banner -->
       <section
-        class="bg-[#cff0dc] bg-[url('./assets/hero-leaf1.png'),url('./assets/hero-leaf2.png')] bg-no-repeat bg-[position:bottom_left,_bottom_right] bg-[length:40%,_40%] lg:bg-[length:30%,_30%]"
+        class="bg-[#cff0dc] grid grid-cols-1 lg:grid-cols-12 max-lg:px-2"
       >
+        <div class="col-span-3 lg:pt-20">
+          <img src="./assets/hero-leaf1.png" class="max-lg:w-[30%]" alt="" />
+        </div>
         <div
-          class="min-h-96 text-center flex flex-col justify-center items-center space-y-4 max-lg:px-3"
+          class="col-span-6 text-center flex flex-col justify-center items-center space-y-4"
         >
           <h2 class="text-5xl font-bold">Plant a Tree, Grow a Future</h2>
           <p>
@@ -102,7 +105,179 @@
             >Get Involved</a
           >
         </div>
+        <div class="col-span-3 lg:pt-20">
+          <img src="./assets/hero-leaf2.png" class="max-lg:w-[30%]" alt="" />
+        </div>
       </section>
+      <!-- tree section -->
+      <section
+        class="w-11/12 py-28 grid grid-cols-1 md:grid-cols-12 gap-5 mx-auto"
+      >
+        <h2
+          class="max-lg:order-1 text-4xl pb-5 font-bold col-span-full text-center"
+        >
+          Choose Your Trees
+        </h2>
+        <!-- categories -->
+        <aside
+          class="max-lg:order-2 md:col-span-6 lg:col-span-2 p-3 space-y-3 min-h-56"
+        >
+          <p class="font-bold text-[20px]">Categories</p>
+          <div id="categories" class="space-y-2">
+            <p class="bg-green-700 text-white rounded-lg p-2">All Trees</p>
+            <p class="p-2 hover:bg-green-700 hover:text-white hover:rounded-lg">
+              Fruit Trees
+            </p>
+            <p class="p-2 hover:bg-green-700 hover:text-white hover:rounded-lg">
+              Flowering Trees
+            </p>
+          </div>
+        </aside>
+        <!-- tree cards -->
+        <div
+          class="max-lg:order-4 md:col-span-full lg:col-span-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 min-h-56"
+        >
+          <div class="card bg-base-100 shadow-sm">
+            <figure class="p-3">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                alt="Shoes"
+              />
+            </figure>
+            <div class="card-body p-3">
+              <h2 class="card-title">Card Title</h2>
+              <p>
+                A card component has a figure, a body part, and inside body
+                there are title and actions parts
+              </p>
+              <div class="flex justify-between items-center py-3">
+                <div class="badge bg-[#f0fdf4] text-green-700 font-medium">
+                  NEW
+                </div>
+                <div class="font-bold">
+                  <p class="font-bold">৳ 500</p>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button
+                  class="btn btn-lg w-full bg-green-700 text-white rounded-full"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-sm">
+            <figure class="p-3">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                alt="Shoes"
+              />
+            </figure>
+            <div class="card-body p-3">
+              <h2 class="card-title">Card Title</h2>
+              <p>
+                A card component has a figure, a body part, and inside body
+                there are title and actions parts
+              </p>
+              <div class="flex justify-between items-center py-3">
+                <div class="badge bg-[#f0fdf4] text-green-700 font-medium">
+                  NEW
+                </div>
+                <div class="font-bold">
+                  <p class="font-bold">৳ 500</p>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button
+                  class="btn btn-lg w-full bg-green-700 text-white rounded-full"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-sm">
+            <figure class="p-3">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                alt="Shoes"
+              />
+            </figure>
+            <div class="card-body p-3">
+              <h2 class="card-title">Card Title</h2>
+              <p>
+                A card component has a figure, a body part, and inside body
+                there are title and actions parts
+              </p>
+              <div class="flex justify-between items-center py-3">
+                <div class="badge bg-[#f0fdf4] text-green-700 font-medium">
+                  NEW
+                </div>
+                <div class="font-bold">
+                  <p class="font-bold">৳ 500</p>
+                </div>
+              </div>
+              <div class="card-actions">
+                <button
+                  class="btn btn-lg w-full bg-green-700 text-white rounded-full"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Price Cart -->
+        <aside
+          class="max-lg:order-3 md:col-span-6 lg:col-span-2 rounded-lg p-3 bg-white min-h-56 space-y-3"
+        >
+          <p class="font-bold text-[20px]">Your Cart</p>
+          <div class="" id="myChoice">
+            <div
+              class="bg-[#f0fdf4] p-2 rounded-lg flex flex-wrap justify-between items-center"
+            >
+              <div>
+                <p>Mango Tree</p>
+                <p>৳500 x 1</p>
+              </div>
+              <div>
+                <i class="fa-solid fa-xmark fa-lg"></i>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+      <!-- about campaign section -->
+      <section class="w-11/12 mx-auto lg:grid lg:grid-cols-12 pb-28">
+        <h2 class="col-span-full font-semibold text-3xl text-center pb-10">
+          About the Campaign
+        </h2>
+        <div
+          class="lg:col-span-8 lg:col-start-3 md:grid md:grid-cols-2 justify-center items-center gap-10"
+        >
+          <img
+            src="./assets/about.png"
+            class="w-full max-md:h-60 max-md:pb-5"
+            alt=""
+          />
+
+          <div class="text-[#1F2937] space-y-5">
+            <p class="text-justify">
+              Green Earth is a global tree plantation initiative dedicated to
+              fighting climate change. Since our start, we’ve planted over
+              500,000 trees worldwide. By joining our campaign, you help restore
+              forests, create habitats for wildlife, and combat global warming.
+            </p>
+            <ul class="list-disc pl-7">
+              <li>Restoration of natural habitats</li>
+              <li>Improvement of air quality</li>
+              <li>Support for local communities</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class=""></section>
     </main>
   </body>
 </html>
