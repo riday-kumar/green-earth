@@ -6,6 +6,19 @@ const categoryContainerId = getId("categories");
 const plantContainerId = getId("all-plants");
 const modalId = getId("tree_detail");
 const aboutTreeDetailId = getId("aboutTree");
+const spinId = getId("spin");
+
+// spinning functionality(if z === true , spin will show)
+const runSpin = (z) => {
+  if (z == true) {
+    spinId.classList.remove("hidden");
+    plantContainerId.classList.add("hidden");
+  } else {
+    spinId.classList.add("hidden");
+    plantContainerId.classList.remove("hidden");
+  }
+};
+
 // get all category
 const categoryContainer = () => {
   fetch("https://openapi.programming-hero.com/api/categories")
@@ -29,6 +42,8 @@ const allCategory = (categories) => {
 
 // get all the plant
 const plantContainer = () => {
+  runSpin(true);
+
   fetch("https://openapi.programming-hero.com/api/plants")
     .then((res) => res.json())
     .then((plants) => allPlants(plants.plants));
@@ -76,6 +91,7 @@ const allPlants = (plants) => {
     `;
 
     plantContainerId.appendChild(createPlants);
+    runSpin(false);
     // console.log(plant);
   });
 };
