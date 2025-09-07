@@ -4,7 +4,8 @@ const getNodeList = (y) => document.querySelectorAll(y);
 // all the parent Id
 const categoryContainerId = getId("categories");
 const plantContainerId = getId("all-plants");
-
+const modalId = getId("tree_detail");
+const aboutTreeDetailId = getId("aboutTree");
 // get all category
 const categoryContainer = () => {
   fetch("https://openapi.programming-hero.com/api/categories")
@@ -48,7 +49,9 @@ const allPlants = (plants) => {
               />
             </figure>
             <div class="card-body p-3">
-              <h2 class="card-title">${plant.name}</h2>
+              <h2 class="card-title text-2xl" onClick = "openModal(${
+                plant.id
+              })">${plant.name}</h2>
               <p class = "text-[18px]">
                 ${plant.description.slice(0, 50)}...
               </p>
@@ -61,7 +64,7 @@ const allPlants = (plants) => {
                 </div>
               </div>
               <div class="card-actions">
-                <button
+                <button 
                   class="btn btn-lg w-full bg-green-700 text-white rounded-full"
                 >
                   Add to Cart
@@ -75,6 +78,35 @@ const allPlants = (plants) => {
     plantContainerId.appendChild(createPlants);
     // console.log(plant);
   });
+};
+
+// Modal(tree Details)
+const openModal = (id) => {
+  fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    .then((res) => res.json())
+    .then((wood) => detailsModal(wood.plants));
+};
+
+const detailsModal = (tree) => {
+  aboutTreeDetailId.innerHTML = "";
+  const createTreeDetail = document.createElement("div");
+  createTreeDetail.innerHTML = `
+  
+        <p class="text-2xl pb-3 font-bold">${tree.name}</p>
+            <img
+              class=" rounded-lg pb-3 h-80 w-full"
+              src="${tree.image}"
+              alt=""
+            />
+            <p class= "pb-3"><span class="font-bold">Category</span> : ${tree.category}</p>
+            <p class= "pb-3"><span class="font-bold">Price</span> : ${tree.price}</p>
+            <p>
+              <span class="font-bold">Description</span> : ${tree.description}
+        </p>
+  `;
+  aboutTreeDetailId.appendChild(createTreeDetail);
+  modalId.showModal(); //here we call the modal dialogue
+  //   console.log(tree);
 };
 
 // user click category container and we get the id of that category
@@ -94,7 +126,7 @@ const showPerCatPlant = (id) => {
   });
   document.getElementById(id).classList.add("active");
 
-  //   (data filtered by category)
+  //   data filtered by category
   fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     .then((res) => res.json())
     .then((trees) => allPlants(trees.plants)); //here we called allPlants function for showing trees 1 by 1
