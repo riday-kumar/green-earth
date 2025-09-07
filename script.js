@@ -7,6 +7,7 @@ const plantContainerId = getId("all-plants");
 const modalId = getId("tree_detail");
 const aboutTreeDetailId = getId("aboutTree");
 const spinId = getId("spin");
+const myChoice = getId("myChoice");
 
 // spinning functionality(if z === true , spin will show)
 const runSpin = (z) => {
@@ -17,6 +18,108 @@ const runSpin = (z) => {
     spinId.classList.add("hidden");
     plantContainerId.classList.remove("hidden");
   }
+};
+
+// here is an array of object
+let userSelected = [];
+
+const addToCart = (plantId) => {
+  fetch(`https://openapi.programming-hero.com/api/plant/${plantId}`)
+    .then((res) => res.json())
+    .then((plant) => {
+      cardContainer(plant.plants);
+      showTotalPrice();
+    });
+};
+
+const cardContainer = (singlePlantDetail) => {
+  const getPlantName = singlePlantDetail.name;
+  const getPlantPrice = singlePlantDetail.price;
+  alert(` ${getPlantName} has been added to your cart`);
+  const makeObj = { plantName: getPlantName, plantPrice: getPlantPrice };
+
+  userSelected.push(makeObj);
+  // console.log(singlePlantDetail);
+
+  const totalPrices = 0;
+  myChoice.innerHTML = "";
+  userSelected.forEach((selected) => {
+    const createCartDiv = document.createElement("div");
+    createCartDiv.innerHTML = `
+          <div
+              class="bg-[#f0fdf4] p-2 mb-3 rounded-lg flex flex-wrap justify-between items-center"
+            >
+              <div>
+                <p class="font-bold">${selected.plantName}</p>
+                <p>${selected.plantPrice}</p>
+              </div>
+              <div>
+                <i class="fa-solid fa-xmark fa-lg text-red-600 classCross"></i>
+              </div>
+          </div>
+          
+    `;
+    myChoice.appendChild(createCartDiv);
+  });
+};
+
+// total Price Functionality
+const showTotalPrice = () => {
+  let priceSum = Number(0);
+  userSelected.forEach((p) => {
+    priceSum += p.plantPrice;
+  });
+
+  // total price div
+  const createSumDiv = document.createElement("div");
+  createSumDiv.innerHTML = `
+    <p> Total : ${priceSum} </p>
+    `;
+  myChoice.appendChild(createSumDiv);
+  // console.log(priceSum);
+};
+
+// remove trees from Your Cart
+myChoice.addEventListener("click", (e) => {
+  // console.log(e.target);
+  if (e.target.classList.contains("classCross")) {
+    const cartTreeName =
+      e.target.parentElement.parentElement.children[0].children[0].innerText;
+    const cartTreePrice =
+      e.target.parentElement.parentElement.children[0].children[1].innerText;
+    console.log(cartTreeName, cartTreePrice);
+
+    // here removing element from the userSelected array
+    let i = userSelected.findIndex((ele) => ele.plantName == cartTreeName);
+    if (i !== -1) {
+      userSelected.splice(i, 1);
+    }
+
+    latestCardContainer(userSelected);
+  }
+});
+
+const latestCardContainer = (newSelect) => {
+  myChoice.innerHTML = "";
+  newSelect.forEach((selected) => {
+    const createCartDiv = document.createElement("div");
+    createCartDiv.innerHTML = `
+          <div
+              class="bg-[#f0fdf4] p-2 mb-3 rounded-lg flex flex-wrap justify-between items-center"
+            >
+              <div>
+                <p class="font-bold">${selected.plantName}</p>
+                <p>${selected.plantPrice}</p>
+              </div>
+              <div>
+                <i class="fa-solid fa-xmark fa-lg text-red-600 classCross"></i>
+              </div>
+          </div>
+          
+    `;
+    myChoice.appendChild(createCartDiv);
+  });
+  showTotalPrice();
 };
 
 // get all category
@@ -79,7 +182,7 @@ const allPlants = (plants) => {
                 </div>
               </div>
               <div class="card-actions">
-                <button 
+                <button onClick = "addToCart(${plant.id})"
                   class="btn btn-lg w-full bg-green-700 text-white rounded-full"
                 >
                   Add to Cart
@@ -151,5 +254,6 @@ const showPerCatPlant = (id) => {
 
 // we called CategoryContainer() function for showing category by default
 categoryContainer();
+
 // we called plantContainer() function for showing Plants by default
 plantContainer();
