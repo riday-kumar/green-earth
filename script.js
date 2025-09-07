@@ -1,4 +1,5 @@
 const getId = (x) => document.getElementById(x);
+const getNodeList = (y) => document.querySelectorAll(y);
 
 // all the parent Id
 const categoryContainerId = getId("categories");
@@ -11,11 +12,12 @@ const categoryContainer = () => {
     .then((data) => allCategory(data.categories));
 };
 
+// here is one by one category
 const allCategory = (categories) => {
   categories.forEach((category) => {
     const createCategory = document.createElement("div");
     createCategory.innerHTML = `
-        <p class="p-2 hover:bg-green-700 hover:text-white hover:rounded-lg" id ="cat-${category.id}">
+        <p class="category-single p-2 hover:bg-green-700 hover:text-white hover:rounded-lg" id ="${category.id}">
               ${category.category_name}
         </p>
     `;
@@ -31,7 +33,9 @@ const plantContainer = () => {
     .then((plants) => allPlants(plants.plants));
 };
 
+// here is one by one plant
 const allPlants = (plants) => {
+  plantContainerId.innerHTML = "";
   plants.forEach((plant) => {
     const createPlants = document.createElement("div");
     createPlants.innerHTML = `
@@ -71,6 +75,30 @@ const allPlants = (plants) => {
     plantContainerId.appendChild(createPlants);
     // console.log(plant);
   });
+};
+
+// user click category container and we get the id of that category
+categoryContainerId.addEventListener("click", (e) => {
+  //   console.log(e.target.classList);
+  if (e.target.classList.contains("category-single")) {
+    showPerCatPlant(e.target.id);
+  }
+});
+
+// fetching the plants according to the category
+const showPerCatPlant = (id) => {
+  //  active button functionality
+  const catSingleNodeList = getNodeList(".category-single");
+  catSingleNodeList.forEach((a) => {
+    a.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+
+  //   (data filtered by category)
+  fetch(`https://openapi.programming-hero.com/api/category/${id}`)
+    .then((res) => res.json())
+    .then((trees) => allPlants(trees.plants)); //here we called allPlants function for showing trees 1 by 1
+  // console.log(trees.plants)
 };
 
 // we called CategoryContainer() function for showing category by default
